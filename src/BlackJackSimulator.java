@@ -74,14 +74,14 @@ public class BlackJackSimulator {
                     dealerHand.add(playingDeck.deal());
 
 
-                    if ((playerHand.get(0).getFace() == Face.ACE && (playerHand.get(1).getFace() == Face.JACK || playerHand.get(1).getFace() == Face.QUEEN || playerHand.get(1).getFace() == Face.KING))
-                            || (playerHand.get(1).getFace() == Face.ACE && (playerHand.get(0).getFace() == Face.JACK || playerHand.get(0).getFace() == Face.QUEEN || playerHand.get(0).getFace() == Face.KING))) {
+                    if ((playerHand.get(0).getFace() == Face.ACE && (playerHand.get(1).getFace() == Face.JACK || playerHand.get(1).getFace() == Face.QUEEN || playerHand.get(1).getFace() == Face.TEN || playerHand.get(1).getFace() == Face.KING))
+                            || (playerHand.get(1).getFace() == Face.ACE && (playerHand.get(0).getFace() == Face.TEN || playerHand.get(0).getFace() == Face.JACK || playerHand.get(0).getFace() == Face.QUEEN || playerHand.get(0).getFace() == Face.KING))) {
                         System.out.println("You call Black Jack! You win!");
                         balance += bet;
                         System.out.printf("Now you have $%d left.%n", balance);
                         permissionNewRound = true;
-                    } else if ((dealerHand.get(0).getFace() == Face.ACE && (dealerHand.get(1).getFace() == Face.JACK || dealerHand.get(1).getFace() == Face.QUEEN || dealerHand.get(1).getFace() == Face.KING))
-                            || (dealerHand.get(1).getFace() == Face.ACE && ((dealerHand).get(0).getFace() == Face.JACK || dealerHand.get(0).getFace() == Face.QUEEN || dealerHand.get(1).getFace() == Face.KING))) {
+                    } else if ((dealerHand.get(0).getFace() == Face.ACE && (dealerHand.get(1).getFace() == Face.TEN || dealerHand.get(1).getFace() == Face.JACK || dealerHand.get(1).getFace() == Face.QUEEN || dealerHand.get(1).getFace() == Face.KING))
+                            || (dealerHand.get(1).getFace() == Face.ACE && (dealerHand.get(0).getFace() == Face.TEN || (dealerHand).get(0).getFace() == Face.JACK || dealerHand.get(0).getFace() == Face.QUEEN || dealerHand.get(1).getFace() == Face.KING))) {
                         System.out.println("Dealer calls Black Jack! You lose.");
                         System.out.println("Dealer got these cards: ");
                         showHand(dealerHand);
@@ -190,6 +190,8 @@ public class BlackJackSimulator {
                                         dealerTotal -= 10;
                                         numberOfAceDealer--;
                                         System.out.println("Dealer drew a card. Now is your turn.");
+                                        permittedHitOrStand = true;
+                                        permissionNewRound = false;
                                     } else {
                                         System.out.println("Dealer bust! You win!");
                                         System.out.println("Dealer has these cards:");
@@ -202,6 +204,7 @@ public class BlackJackSimulator {
                                 } else {
                                     System.out.println("Dealer drew a card. Now is your turn.");
                                     permittedHitOrStand = true;
+                                    permissionNewRound = false;
                                 }
                             }
 
